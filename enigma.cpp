@@ -52,4 +52,6 @@ Enigma::Enigma(int argc, char ** argv){
   }
   if (exit_code == 0)
     cout << "Enigma was successfully inititalised!" << endl;
+  delete plugboard;
+  delete reflector;
 }

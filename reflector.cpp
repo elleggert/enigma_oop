@@ -3,7 +3,7 @@
 using namespace std;
 
   
-Reflector::Reflector(std::string const& call_string){
+Reflector::Reflector(string const& call_string){
   exit_code = 0;
   int count = 0;
   string rf_digit_string;
@@ -13,7 +13,6 @@ Reflector::Reflector(std::string const& call_string){
   is_reflector.open(call_string, ios::in);
   if (!is_reflector){
     exit_code = 11;
-    return;
   }
   //Inserting the next digit from the file
   is_reflector >> rf_digit_string;
@@ -25,8 +24,10 @@ Reflector::Reflector(std::string const& call_string){
       check_input_in_range(rf_digit_string, exit_code);
     if (exit_code == 0)
       rf_configuration[count] = stoi(rf_digit_string);
-    if (exit_code == 0)
-      check_input_repetitive(count, rf_configuration, exit_code);
+    if (exit_code == 0){
+      if (!is_input_repetitive(count, rf_configuration))
+	  exit_code = 9;
+    }
     if (exit_code == 0)
       is_reflector >> rf_digit_string;
     count++;

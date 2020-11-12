@@ -1,4 +1,4 @@
-EXE=main.o enigma.o plugboard.o reflector.o helper.o
+EXE=main.o enigma.o plugboard.o reflector.o helper.o rotor.o
 
 enigma: $(EXE)
 	g++ -Wall -g $(EXE) -o enigma
@@ -8,7 +8,7 @@ enigma: $(EXE)
 
 main.o: enigma.h errors.h
 
-enigma.o: enigma.h plugboard.h reflector.h
+enigma.o: enigma.h plugboard.h reflector.h rotor.h
 
 clean:
 	rm -f *.o enigma

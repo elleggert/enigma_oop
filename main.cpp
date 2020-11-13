@@ -26,7 +26,7 @@ int main(int argc, char** argv){
       return enigma.exit_code;
     }
 
-    encrypted_letter = enigma.encryption(letter);
+    encrypted_letter = enigma.encryption(digit);
     cout << encrypted_letter;
   }
   cout << endl;

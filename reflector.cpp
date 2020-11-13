@@ -40,3 +40,16 @@ Reflector::Reflector(string const& call_string){
   for (int j = 0 ; j < 26 ; j++)
     cout << rf_configuration[j] << endl;
 }
+
+int Reflector::encrypt(int digit){
+  int k;
+  for (int i = 0 ; i < 26 ; i++){
+    if (this->rf_configuration[i] == digit){
+      k = i % 2;
+      if (k == 0)
+	return (this->rf_configuration[i+1]);
+      if (k == 1)
+	return (this->rf_configuration[i-1]);
+    }
+  }
+}

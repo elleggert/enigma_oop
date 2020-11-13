@@ -14,6 +14,7 @@ class Reflector{
  public:
   int exit_code = 0;
   Reflector(std::string const& call_string);
+  int encrypt(int digit);
 };
 
 

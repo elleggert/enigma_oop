@@ -57,18 +57,38 @@ Rotor::Rotor(string const& call_string){
 }
 
 
-void Rotor::rotate(Rotor* rotor){
+void Rotor::rotate(){
   int k = this->notches[0];
-  if (rotor == nullptr)
+  if (this == nullptr)
     return;
-  this->reference_no++;
+  this->reference_no = (this->reference_no + 1) % 26;
 
   for (int i = 1 ; k > 0 ; i++){
     if (this->reference_no == k)
-      rotate(this->left);
+      (this->left)->rotate();
     k = this->notches[i];
   }
   return;
 }
-  
+
+int Rotor::encrypt_forward(int digit){
+  if (this == nullptr)
+    return digit;
+  digit = (digit + this->reference_no) % 26;
+  digit = this->rot_configuration[digit];
+  digit = (digit + 26 - this->reference_no) % 26;
+  digit = (this->left)->encrypt_forward(digit);
+  return digit;
+}
+
+
+int Rotor::encrypt_backwards(int digit){
+  if (this == nullptr)
+    return digit;
+  digit = (digit + this->reference_no) % 26;
+  digit = this->rot_configuration[digit];
+  digit = (digit + 26 - this->reference_no) % 26;
+  digit = (this->right)->encrypt_backwards(digit);
+  return digit;
+}
   

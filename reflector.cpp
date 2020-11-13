@@ -42,13 +42,13 @@ Reflector::Reflector(string const& call_string){
 }
 
 int Reflector::encrypt(int digit){
-  int k;
+  int remainder;
   for (int i = 0 ; i < 26 ; i++){
     if (this->rf_configuration[i] == digit){
-      k = i % 2;
-      if (k == 0)
+      remainder = i % 2;
+      if (remainder == 0)
 	return (this->rf_configuration[i+1]);
-      if (k == 1)
+      if (remainder == 1)
 	return (this->rf_configuration[i-1]);
     }
   }

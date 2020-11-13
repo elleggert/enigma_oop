@@ -43,3 +43,25 @@ Plugboard::Plugboard(std::string const& call_string){
   for (int j = 0 ; j < 26 ; j++)
     cout << pb_configuration[j] << endl;
 }
+
+
+int Plugboard::encrypt(int digit){
+  int blocker = 0, remainder, i = 1;
+  while (i > 0){
+    i = this->pb_configuration[blocker];
+    blocker++;
+  }
+
+  for (int j = 0 ; j < blocker - 1 ; j++){
+    if (this->pb_configuration[j] == digit){
+      remainder = j % 2;
+      if (remainder == 0)
+	return (this->pb_configuration[j+1]);
+      if (remainder == 1)
+	return (this->pb_configuration[j-1]);
+    }
+  }
+  return digit;
+}
+
+      

@@ -16,7 +16,9 @@ class Rotor{
   Rotor * right = nullptr;
   int exit_code = 0;
   Rotor(std::string const& call_string);
-  void rotate(Rotor* rotor);
+  void rotate();
+  int encrypt_forward(int digit);
+  int encrypt_backwards(int digit);
   friend class Enigma;
 };
 

@@ -25,6 +25,7 @@ class Enigma{
   Enigma(int argc, char ** argv);
   ~Enigma();
   void clear_rotor();
+  int encryption(int letter);
 
 };
 

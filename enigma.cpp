@@ -58,6 +58,7 @@ Enigma::Enigma(int argc, char ** argv){
       if (rotor_count == 0){
 	leftmost_rotor = new Rotor(call_string);
 	exit_code = leftmost_rotor->exit_code;
+	rightmost_rotor = leftmost_rotor;
 	temp = leftmost_rotor;
 	rotor_count++;
       }
@@ -119,6 +120,20 @@ int Enigma::set_rotor_starting_position(string const& call_string, int rotor_cou
   }
   return exit;
 }
+
+int Enigma::encryption(int digit){
+
+  rightmost_rotor->rotate();
+
+  digit = plugboard->encrypt(digit);
+  digit = rightmost_rotor->encrypt_forward(digit);
+  digit = reflector->encrypt(digit);
+  digit = leftmost_rotor->encrypt_backwards(digit);
+  digit = plugboard->encrypt(digit);
+
+  return static_cast<char>(digit) + 65;
+}
+
 
 void Enigma::clear_rotor(){
   Rotor* current = leftmost_rotor;

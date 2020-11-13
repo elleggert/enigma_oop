@@ -14,6 +14,7 @@ class Plugboard{
  public:
   int exit_code = 0;
   Plugboard(std::string const& call_string);
+  int encrypt(int digit);
 };
 
 

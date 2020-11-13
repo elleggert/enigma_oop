@@ -4,7 +4,7 @@ using namespace std;
 
 
 Rotor::Rotor(string const& call_string){
-  top_position = 0;
+  reference_no = 0;
   exit_code = 0;
   left = nullptr;
   right = nullptr;
@@ -57,5 +57,18 @@ Rotor::Rotor(string const& call_string){
 }
 
 
-    
+void Rotor::rotate(Rotor* rotor){
+  int k = this->notches[0];
+  if (rotor == nullptr)
+    return;
+  this->reference_no++;
+
+  for (int i = 1 ; k > 0 ; i++){
+    if (this->reference_no == k)
+      rotate(this->left);
+    k = this->notches[i];
+  }
+  return;
+}
+  
   

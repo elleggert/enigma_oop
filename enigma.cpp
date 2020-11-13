@@ -113,7 +113,7 @@ int Enigma::set_rotor_starting_position(string const& call_string, int rotor_cou
   if (exit == 0){
     Rotor* here = leftmost_rotor;
     for (int rotor = 0 ; here != nullptr ; rotor++){
-      here->top_position = pos_configuration[rotor];
+      here->reference_no = pos_configuration[rotor];
       here = here->right;
     }
   }

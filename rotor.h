@@ -11,14 +11,13 @@
 class Rotor{
   int rot_configuration[26];
   int notches[5];
-  
- public:
-  int top_position = 0;
+  int reference_no = 0;
   Rotor * left = nullptr;
   Rotor * right = nullptr;
   int exit_code = 0;
   Rotor(std::string const& call_string);
+  void rotate(Rotor* rotor);
+  friend class Enigma;
 };
-  
 
 #endif

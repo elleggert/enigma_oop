@@ -21,13 +21,14 @@ Enigma::Enigma(int argc, char ** argv){
   string call_string;
   Rotor* temp;
 
+  /*
   cout << "You have entered " << argc << " arguments." << endl;
 
   cout << "The arguments are: " << endl;
 
   for (int i = 0; i < argc; ++i) 
         cout << argv[i] << endl;
-
+  */
   if (argc < 4)
     exit_code = 1;
 
@@ -107,10 +108,11 @@ int Enigma::set_rotor_starting_position(string const& call_string, int rotor_cou
   if (exit == 0 && count < rotor_count){
 	exit = 8;
     }
+  /*
   cout << "Rotor Position" << endl;
   for (int j = 0 ; j <= rotor_count ; j++)
     cout << pos_configuration[j] << endl;
-
+  */
   if (exit == 0){
     Rotor* here = leftmost_rotor;
     for (int rotor = 0 ; here != nullptr ; rotor++){

@@ -48,12 +48,15 @@ Rotor::Rotor(string const& call_string){
     }
   }
   is_rotor.close();
+
+  /*
   cout << "Rotor" << endl;
   for (int l = 0 ; l <= 25 ; l++)
     cout << rot_configuration[l] << endl;
   cout << "Notches" << endl;
   for (int k = 0 ; k < 5 ; k++)
     cout << notches[k] << endl;
+  */
 }
 
 

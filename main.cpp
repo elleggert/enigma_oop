@@ -6,9 +6,10 @@
 #include<cctype>
 #include "enigma.h"
 
-// TODO: MAKE SURE THAT THIS ALSO WORKS WITH AN EMPTY PLUGBOARD
-// TODO: DEAL WITH CASE WHERE NO ROTOR SPECIFICATIONS ARE GIVEN OR WHERE ONLY POSITIONS ARE GIVEN
-// ADD THE ROTOR POSITIONS FILE. Make sure the function counts number of rotor arguments before. Then check the input. 
+// DELETE ALL THE HELPER FOR LOOOPS
+// APPROPRIATELY COMMENT THE FILESy
+
+
 using namespace std;
 
 
@@ -17,7 +18,7 @@ int main(int argc, char** argv){
   Enigma enigma(argc, argv);
 
 
-  cout <<  "Please enter a message to be encrypted (UPPERCASE ALPHABETICAL CHARACTERS ONLY, any number to quit)" << endl;
+  cout <<  "Please enter a message to be encrypted (UPPERCASE ALPHABETICAL CHARACTERS ONLY)" << endl;
   while (cin >> ws >> letter){
     int digit = static_cast<int>(letter) - 65;
     if (digit < 0 || digit > 25){

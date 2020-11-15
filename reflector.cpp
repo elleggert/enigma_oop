@@ -35,10 +35,11 @@ Reflector::Reflector(string const& call_string){
   if (exit_code == 0 && count != 26)
     exit_code = 10;
   is_reflector.close();
-
+  /*
   cout << "Reflector" << endl;
   for (int j = 0 ; j < 26 ; j++)
     cout << rf_configuration[j] << endl;
+  */
 }
 
 int Reflector::encrypt(int digit){

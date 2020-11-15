@@ -17,6 +17,13 @@ int main(int argc, char** argv){
   char letter, encrypted_letter;
   Enigma enigma(argc, argv);
 
+  if (enigma.exit_code == 0)
+    cout << "Enigma was successfully inititalised!" << endl;
+  else {
+    error_handling("", enigma.exit_code);
+    return enigma.exit_code;
+  }
+
 
   cout <<  "Please enter a message to be encrypted (UPPERCASE ALPHABETICAL CHARACTERS ONLY)" << endl;
   while (cin >> ws >> letter){

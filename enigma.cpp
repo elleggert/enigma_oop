@@ -17,7 +17,6 @@ Enigma::Enigma(int argc, char ** argv){
   rightmost_rotor = nullptr;
   rotor_count = 0;
 
-  int found;
   string call_string;
   Rotor* temp;
 
@@ -34,7 +33,7 @@ Enigma::Enigma(int argc, char ** argv){
 
   for (int i = 1 ; i < argc && exit_code == 0; i++){
     call_string = argv[i];
-    found = call_string.find(".pb");
+    auto found = call_string.find(".pb");
     if (found != string::npos){
       plugboard = new Plugboard(call_string);
       exit_code = plugboard->exit_code;

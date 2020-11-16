@@ -53,4 +53,5 @@ int Reflector::encrypt(int digit){
 	return (this->rf_configuration[i-1]);
     }
   }
+  return digit; //This return statement will never be reached, since the clauses above are MECE and no faulty rf configuration will be encrypted. Only included to suppress warning. 
 }

@@ -69,12 +69,11 @@ Enigma::Enigma(int argc, char ** argv){
     if (found != string::npos){
       exit_code = set_rotor_starting_position(call_string, rotor_count);
     }
-    /*
-    if (exit_code == 0){
-      cout << " Configuration file " << call_string << " was successfully loaded. " << endl;
+    
+    if (exit_code != 0){
+      error_handling(call_string, exit_code);
+      break;
     }
-    else
-    error_handling(call_string, exit_code); */
   }
 }
 

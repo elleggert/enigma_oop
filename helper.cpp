@@ -9,6 +9,14 @@ void check_input_numerical(string const& digit_string, int& exit_code){
   }
 }
 
+void check_int_input_in_range(int digit, int& exit_code){
+  if (digit > 25 || digit < 0){
+   exit_code = 2;
+   return;
+  }
+ return;
+}
+
 void check_input_in_range(string const& digit_string, int& exit_code){
   int digit = stoi(digit_string);
   if (digit > 25 || digit < 0)

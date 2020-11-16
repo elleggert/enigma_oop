@@ -21,6 +21,7 @@ int main(int argc, char** argv){
     return enigma.exit_code;
   
   cout <<  "Please enter a message to be encrypted (UPPERCASE ALPHABETICAL CHARACTERS ONLY)" << endl;
+  
   while (cin >> ws >> letter){
     int digit = static_cast<int>(letter) - 65;
 

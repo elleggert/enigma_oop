@@ -1,4 +1,5 @@
 #include "reflector.h"
+#include "errors.h"
 
 using namespace std;
 
@@ -12,7 +13,7 @@ Reflector::Reflector(string const& call_string){
   //Opening the file
   is_reflector.open(call_string, ios::in);
   if (!is_reflector){
-    exit_code = 11;
+    exit_code = ERROR_OPENING_CONFIGURATION_FILE;
   }
   //Inserting the next digit from the file
   is_reflector >> rf_digit_string;
@@ -26,14 +27,14 @@ Reflector::Reflector(string const& call_string){
       rf_configuration[count] = stoi(rf_digit_string);
     if (exit_code == 0){
       if (!is_input_repetitive(count, rf_configuration))
-	  exit_code = 9;
+	  exit_code = INVALID_REFLECTOR_MAPPING;
     }
     if (exit_code == 0)
       is_reflector >> rf_digit_string;
     count++;
   }
   if (exit_code == 0 && count != 26)
-    exit_code = 10;
+    exit_code = INCORRECT_NUMBER_OF_REFLECTOR_PARAMETERS;
   is_reflector.close();
   /*
   cout << "Reflector" << endl;

@@ -1,17 +1,18 @@
 #include "helper.h"
+#include "errors.h"
 
 using namespace std;
 
 void check_input_numerical(string const& digit_string, int& exit_code){
   for (int i = 0; i< int(digit_string.length()); i++){
     if (!isdigit(digit_string[i]))
-      exit_code = 4;
+      exit_code = NON_NUMERIC_CHARACTER;
   }
 }
 
 void check_int_input_in_range(int digit, int& exit_code){
   if (digit > 25 || digit < 0){
-   exit_code = 2;
+   exit_code = INVALID_INPUT_CHARACTER;
    return;
   }
  return;
@@ -20,7 +21,7 @@ void check_int_input_in_range(int digit, int& exit_code){
 void check_input_in_range(string const& digit_string, int& exit_code){
   int digit = stoi(digit_string);
   if (digit > 25 || digit < 0)
-    exit_code = 3;
+    exit_code = INVALID_INDEX;
 }
 
 bool is_input_repetitive(int count, int const configuration[26]){
@@ -64,7 +65,7 @@ void error_handling(string const& call_string, int exit_code){
     cerr << "Sorry, the reflector configuration file " << call_string << " has an invalid input configuration!" << endl;
     break;
   case 10:
-    cerr << "Sorry, the reflector configuration file " << call_string << " did not spefify exactly 13 pairs!" << endl;
+    cerr << "Incorrect (odd) number of parameters in reflector file " << call_string << endl; 
     break;
   case 11:
     cerr << "Sorry, the configuration file " << call_string << " could not be opened!" << endl;

@@ -124,9 +124,11 @@ int Enigma::encryption(int digit){
   rightmost_rotor->rotate();
 
   digit = plugboard->encrypt(digit);
-  digit = rightmost_rotor->encrypt_forward(digit);
+  if (rightmost_rotor != nullptr)
+    digit = rightmost_rotor->encrypt_forward(digit);
   digit = reflector->encrypt(digit);
-  digit = leftmost_rotor->encrypt_backwards(digit);
+  if (leftmost_rotor != nullptr)
+    digit = leftmost_rotor->encrypt_backwards(digit);
   digit = plugboard->encrypt(digit);
 
   return static_cast<char>(digit) + 65;

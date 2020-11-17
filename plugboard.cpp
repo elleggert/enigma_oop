@@ -1,4 +1,5 @@
 #include "plugboard.h"
+#include "errors.h"
 
 using namespace std;
 
@@ -12,7 +13,7 @@ Plugboard::Plugboard(std::string const& call_string){
   //Opening the file
   is_plugboard.open(call_string, ios::in);
   if (!is_plugboard){
-    exit_code = 11;
+    exit_code = ERROR_OPENING_CONFIGURATION_FILE;
   }
   //Inserting the next digit from the file
   is_plugboard >> pb_digit_string;
@@ -26,7 +27,7 @@ Plugboard::Plugboard(std::string const& call_string){
       pb_configuration[count] = stoi(pb_digit_string);
     if (exit_code == 0){
       if (!is_input_repetitive(count, pb_configuration))
-	exit_code = 5;
+	exit_code = IMPOSSIBLE_PLUGBOARD_CONFIGURATION;
     }
     if (exit_code == 0)
       is_plugboard >> pb_digit_string;
@@ -35,7 +36,7 @@ Plugboard::Plugboard(std::string const& call_string){
   }
   pb_configuration[count] = -1;
   if (exit_code == 0 && count % 2 == 1)
-    exit_code = 6;
+    exit_code = INCORRECT_NUMBER_OF_PLUGBOARD_PARAMETERS;
   
   is_plugboard.close();
 

@@ -1,4 +1,5 @@
 #include "rotor.h"
+#include "errors.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ Rotor::Rotor(string const& call_string){
     //Opening the file
   is_rotor.open(call_string, ios::in);
   if (!is_rotor)
-    exit_code = 11;
+    exit_code = ERROR_OPENING_CONFIGURATION_FILE;
   //Inserting the next digit from the file to fill the rotor configuration
   is_rotor >> rot_digit_string;
   while (exit_code == 0 && count <= 25){
@@ -28,7 +29,7 @@ Rotor::Rotor(string const& call_string){
     if (exit_code == 0)
       rot_configuration[count] = stoi(rot_digit_string);
     if (exit_code == 0 && !is_input_repetitive(count, rot_configuration))
-      exit_code = 7;
+      exit_code = INVALID_ROTOR_MAPPING;
     if (exit_code == 0)
       is_rotor >> rot_digit_string;
     count++;
@@ -79,8 +80,11 @@ int Rotor::encrypt_forward(int digit){
     return digit;
   digit = (digit + this->reference_no) % 26;
   digit = this->rot_configuration[digit];
+  /*digit = (this->rot_configuration[(digit + this->reference_no) % 26] - this->reference_no + 26) % 26;
   digit = (digit + 26 - this->reference_no) % 26;
-  digit = (this->left)->encrypt_forward(digit);
+  cout << digit << endl; */
+  if (this->left != nullptr)
+    digit = (this->left)->encrypt_forward(digit);
   return digit;
 }
 
@@ -88,10 +92,22 @@ int Rotor::encrypt_forward(int digit){
 int Rotor::encrypt_backwards(int digit){
   if (this == nullptr)
     return digit;
-  digit = (digit + this->reference_no) % 26;
-  digit = this->rot_configuration[digit];
-  digit = (digit + 26 - this->reference_no) % 26;
-  digit = (this->right)->encrypt_backwards(digit);
+
+  for (int i = 0; i < 26 ; i++)
+    if (this->rot_configuration[i] == digit){
+      digit = (i - this->reference_no + 26) % 26;
+      if (this->right != nullptr)
+	digit = (this->right)->encrypt_backwards(digit);
+      break;
+    }
   return digit;
+  
+  /*digit = (digit + this->reference_no) % 26;
+  //digit = this->rot_configuration[digit];
+  //digit = (this->rot_configuration[(digit + this->reference_no) % 26] - this->reference_no + 26) % 26;
+  // cout << digit << endl;
+  //digit = (digit + 26 - this->reference_no) % 26;
+  //digit = (this->right)->encrypt_backwards(digit);
+  //return digit; */
 }
   

@@ -2,55 +2,48 @@
 #include "errors.h"
 
 using namespace std;
-
   
 Plugboard::Plugboard(std::string const& call_string){
-  exit_code = 0;
   int count = 0;
   string pb_digit_string;
   ifstream is_plugboard;
   
-  //Opening the file
   is_plugboard.open(call_string, ios::in);
   if (!is_plugboard){
     exit_code = ERROR_OPENING_CONFIGURATION_FILE;
   }
-  //Inserting the next digit from the file
+ 
   is_plugboard >> pb_digit_string;
-  while (exit_code == 0 && !is_plugboard.eof()){
+  while (!exit_code && !is_plugboard.eof()){
 
-    if (exit_code == 0)
-      check_input_numerical(pb_digit_string, exit_code);
-    if (exit_code == 0)
-      check_input_in_range(pb_digit_string, exit_code);
-    if (exit_code == 0)
+    if (!exit_code)
+      is_numeric(pb_digit_string, exit_code);
+    if (!exit_code)
+      input_in_range(pb_digit_string, exit_code);
+    if (!exit_code)
       pb_configuration[count] = stoi(pb_digit_string);
-    if (exit_code == 0){
-      if (!is_input_repetitive(count, pb_configuration))
+    if (!exit_code){
+      if (!is_repetitive(count, pb_configuration))
 	exit_code = IMPOSSIBLE_PLUGBOARD_CONFIGURATION;
     }
-    if (exit_code == 0)
+    if (!exit_code)
       is_plugboard >> pb_digit_string;
     
     count++;
   }
+  //SETTING A FLAG TO SIGNALISE END OF PLUGBOARD
   pb_configuration[count] = -1;
-  if (exit_code == 0 && count % 2 == 1)
+  if (!exit_code && count % 2 == 1)
     exit_code = INCORRECT_NUMBER_OF_PLUGBOARD_PARAMETERS;
-  
   is_plugboard.close();
-
-  /*
-  cout << "Plugboard" << endl;
-  for (int j = 0 ; j < 26 ; j++)
-    cout << pb_configuration[j] << endl;
-  */
 }
 
+/*End of Function*/
 
 int Plugboard::encrypt(int digit){
   int blocker = 0, remainder, i = 1;
-  while (i > 0){
+  //Calculating how many plugboard connections were specified
+  while (i){
     i = this->pb_configuration[blocker];
     blocker++;
   }
@@ -58,13 +51,12 @@ int Plugboard::encrypt(int digit){
   for (int j = 0 ; j < blocker - 1 ; j++){
     if (this->pb_configuration[j] == digit){
       remainder = j % 2;
-      if (remainder == 0)
+      if (!remainder)
 	return (this->pb_configuration[j+1]);
-      if (remainder == 1)
+      if (remainder)
 	return (this->pb_configuration[j-1]);
     }
   }
   return digit;
 }
-
-      
+/*End of Function*/

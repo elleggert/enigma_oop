@@ -2,57 +2,53 @@
 #include "errors.h"
 
 using namespace std;
-
   
 Reflector::Reflector(string const& call_string){
-  exit_code = 0;
   int count = 0;
   string rf_digit_string;
   ifstream is_reflector;
   
-  //Opening the file
+ 
   is_reflector.open(call_string, ios::in);
   if (!is_reflector){
     exit_code = ERROR_OPENING_CONFIGURATION_FILE;
   }
-  //Inserting the next digit from the file
+ 
   is_reflector >> rf_digit_string;
-  while (exit_code == 0 && !is_reflector.eof()){
+  while (!exit_code && !is_reflector.eof()){
 
-    if (exit_code == 0)
-      check_input_numerical(rf_digit_string, exit_code);
-    if (exit_code == 0)
-      check_input_in_range(rf_digit_string, exit_code);
-    if (exit_code == 0)
+    if (!exit_code)
+      is_numeric(rf_digit_string, exit_code);
+    if (!exit_code)
+      input_in_range(rf_digit_string, exit_code);
+    if (!exit_code)
       rf_configuration[count] = stoi(rf_digit_string);
-    if (exit_code == 0){
-      if (!is_input_repetitive(count, rf_configuration))
+    if (!exit_code){
+      if (!is_repetitive(count, rf_configuration))
 	  exit_code = INVALID_REFLECTOR_MAPPING;
     }
-    if (exit_code == 0)
+    if (!exit_code)
       is_reflector >> rf_digit_string;
     count++;
   }
-  if (exit_code == 0 && count != 26)
+  if (!exit_code  && count != 26)
     exit_code = INCORRECT_NUMBER_OF_REFLECTOR_PARAMETERS;
   is_reflector.close();
-  /*
-  cout << "Reflector" << endl;
-  for (int j = 0 ; j < 26 ; j++)
-    cout << rf_configuration[j] << endl;
-  */
 }
+/*End of Function*/
 
 int Reflector::encrypt(int digit){
   int remainder;
   for (int i = 0 ; i < 26 ; i++){
     if (this->rf_configuration[i] == digit){
       remainder = i % 2;
-      if (remainder == 0)
+      if (!remainder)
 	return (this->rf_configuration[i+1]);
-      if (remainder == 1)
+      if (remainder)
 	return (this->rf_configuration[i-1]);
     }
   }
-  return digit; //This return statement will never be reached, since the clauses above are MECE and no faulty rf configuration will be encrypted. Only included to suppress warning. 
+  return digit; //Return statement will never be reached, since the clauses above are MECE. Included to suppress warning. 
 }
+
+/*End of Function*/

@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include<cstring>
 #include<stdlib.h>
@@ -7,33 +6,26 @@
 #include "enigma.h"
 #include "errors.h"
 
-// DELETE ALL THE HELPER FOR LOOOPS
-// APPROPRIATELY COMMENT THE FILESy
-
-
 using namespace std;
-
 
 int main(int argc, char** argv){
   char letter, encrypted_letter;
   Enigma enigma(argc, argv);
 
-  if (enigma.exit_code != NO_ERROR)
+  if (enigma.exit_code)
     return enigma.exit_code;
   
-  cout <<  "Please enter a message to be encrypted (UPPERCASE ALPHABETICAL CHARACTERS ONLY)" << endl;
+  cout <<  "Please enter a message to be encrypted" << endl;
+
   
   while (cin >> ws >> letter){
-    if (letter == '\n')
-      break;
-
+    
     int digit = static_cast<int>(letter) - 65;
 
-    check_int_input_in_range(digit, enigma.exit_code);
+    int_input_in_range(digit, enigma.exit_code);
     
-    if (enigma.exit_code != NO_ERROR){
-      cout << endl;
-      error_handling("Failure", enigma.exit_code);
+    if (enigma.exit_code){
+      error_handling(string(1,letter), enigma.exit_code);
       return enigma.exit_code;
     }
 

@@ -10,11 +10,15 @@
 
 class Plugboard{
   int pb_configuration[26];
-
- public:
   int exit_code = 0;
+
+  /*Constructor also checking the input validiry */
   Plugboard(std::string const& call_string);
+
+  /*Encryption function*/
   int encrypt(int digit);
+  
+  friend class Enigma;
 };
 
 

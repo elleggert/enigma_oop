@@ -46,7 +46,7 @@ Plugboard::Plugboard(std::string const& call_string){
 int Plugboard::encrypt(int digit){
   int blocker = 0, remainder, i = 1;
   //Calculating how many plugboard connections were specified
-  while (i){
+  while (i >= 0){
     i = this->pb_configuration[blocker];
     blocker++;
   }

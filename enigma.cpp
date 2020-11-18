@@ -109,13 +109,24 @@ int Enigma::set_rotors(string const& call_string, int rotor_count){
   //Setting the offset reference number to the starting position for all rotors in the list
   if (!exit){
     Rotor* here = leftmost_rotor;
+    /*
     for (int rotor = 0 ; here ; rotor++){
       here->reference_no = here->rot_configuration[pos_configuration[rotor]]; //This line was changed
+      here = here->right;
+      }*/
+    for (int rotor = 0 ; here ; rotor++){
+      for (int i = 0 ; i <= 25 ; i++){
+	if (here->rot_configuration[i] == pos_configuration[rotor]){
+	  here->reference_no = i;
+	  break;
+	}
+      }
       here = here->right;
     }
   }
   return exit;
 }
+
 /*END OF FUNCTION*/
 
 int Enigma::encryption(int digit){

@@ -38,7 +38,7 @@ bool is_repetitive(int count, int const configuration[26]){
 void error_handling(string const& call_string, int exit_code){
   switch (exit_code){
   case 1:
-    cerr << call_string << "enigma plugboard-file reflector-file (<rotor-file>)* rotor-positions  "<< endl;
+    cerr << call_string << "enigma plugboard-file reflector-file (<rotor-file>)* rotor-positions"<< endl;
     break;
   case 2:
     cerr << call_string << " is not a valid input character (input characters must be upper case letters A-Z)!" << endl;

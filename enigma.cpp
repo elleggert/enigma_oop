@@ -89,7 +89,7 @@ int Enigma::set_rotors(string const& call_string, int rotor_count){
   if (!is_position){
     exit = ERROR_OPENING_CONFIGURATION_FILE;
   }
-  //Inserting the next digit from the file
+  //Inserting and the next digit from the file
   is_position >> pos_digit_string;
   while (!exit  && !is_position.eof()){
     
@@ -105,11 +105,12 @@ int Enigma::set_rotors(string const& call_string, int rotor_count){
 
   if (!exit && count < rotor_count)
 	exit = NO_ROTOR_STARTING_POSITION;
-  
+
+  //Setting the offset reference number to the starting position for all rotors in the list
   if (!exit){
     Rotor* here = leftmost_rotor;
     for (int rotor = 0 ; here ; rotor++){
-      here->reference_no = pos_configuration[rotor];
+      here->reference_no = here->rot_configuration[pos_configuration[rotor]]; //This line was changed
       here = here->right;
     }
   }

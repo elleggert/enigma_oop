@@ -30,8 +30,10 @@ Reflector::Reflector(string const& call_string){
     if (!exit_code)
       is_reflector >> rf_digit_string;
     count++;
+    if (count > 25 && !is_reflector.eof())
+	exit_code = INCORRECT_NUMBER_OF_REFLECTOR_PARAMETERS;
   }
-  if (!exit_code  && count != 26)
+  if (!exit_code  && count < 26)
     exit_code = INCORRECT_NUMBER_OF_REFLECTOR_PARAMETERS;
   is_reflector.close();
 }

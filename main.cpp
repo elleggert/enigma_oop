@@ -14,10 +14,7 @@ int main(int argc, char** argv){
 
   if (enigma.exit_code)
     return enigma.exit_code;
-  
-  cout <<  "Please enter a message to be encrypted" << endl;
 
-  
   while (cin >> ws >> letter){
     
     int digit = static_cast<int>(letter) - 65;
@@ -28,11 +25,8 @@ int main(int argc, char** argv){
       error_handling(string(1,letter), enigma.exit_code);
       return enigma.exit_code;
     }
-
     encrypted_letter = enigma.encryption(digit);
-    cout << encrypted_letter;
-
-    
+    cout << encrypted_letter;    
   }
   cout << endl;
   return enigma.exit_code;

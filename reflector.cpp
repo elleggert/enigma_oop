@@ -52,5 +52,4 @@ int Reflector::encrypt(int digit){
   }
   return digit; //Return statement will never be reached, since the clauses above are MECE. Included to suppress warning. 
 }
-
 /*End of Function*/

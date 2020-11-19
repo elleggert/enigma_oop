@@ -66,8 +66,8 @@ void Rotor::rotate(){
 /*END OF FUNCTION*/
 
 int Rotor::encrypt_forward(int digit){
-  digit = (digit + this->reference_no) % 26;
-  digit = this->rot_configuration[digit];
+  //  digit = (digit + this->reference_no) % 26;
+  digit = (this->rot_configuration[(digit + reference_no) % 26] - this->reference_no + 26) % 26;
   if (this->left)
     digit = (this->left)->encrypt_forward(digit);
   return digit;
@@ -76,8 +76,8 @@ int Rotor::encrypt_forward(int digit){
 
 int Rotor::encrypt_backwards(int digit){
   for (int i = 0; i < 26 ; i++)
-    if (this->rot_configuration[(i + this->reference_no)% 26] == digit){
-      digit = i;
+    if (this->rot_configuration[i] == ((digit + this->reference_no) % 26)){
+      digit = (i - reference_no + 26) % 26;
       if (this->right)
 	digit = (this->right)->encrypt_backwards(digit);
       break;

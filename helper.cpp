@@ -59,7 +59,7 @@ void error_handling(string const& call_string, int exit_code){
     cerr << "The rotor file " << call_string << " specified an invalid mapping" << endl;
     break;
   case 8:
-    cerr << "The rotor file " << call_string << " did not spedify a starting positions for all rotors" << endl;
+    cerr << "The rotor file " << call_string << " did not specify a starting positions for all rotors" << endl;
     break;
   case 9:
     cerr << "The reflector configuration file " << call_string <<  " has an invalid input configuration" <<  endl;

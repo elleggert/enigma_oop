@@ -76,8 +76,8 @@ int Rotor::encrypt_forward(int digit){
 
 int Rotor::encrypt_backwards(int digit){
   for (int i = 0; i < 26 ; i++)
-    if (this->rot_configuration[i] == digit){
-      digit = (i - this->reference_no + 26) % 26;
+    if (this->rot_configuration[(i + this->reference_no)% 26] == digit){
+      digit = i;
       if (this->right)
 	digit = (this->right)->encrypt_backwards(digit);
       break;

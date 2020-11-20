@@ -55,7 +55,7 @@ void Rotor::rotate(){
   this->reference_no = (this->reference_no + 1) % 26;
 
   for (int i = 1 ; k > 0 ; i++){
-    if (this->rot_configuration[this->reference_no] == k){
+    if (/*this->rot_configuration[*/this->reference_no == k){
       if (this->left) 
 	(this->left)->rotate();
     }

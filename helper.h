@@ -6,6 +6,7 @@
 #include<stdlib.h>
 #include<fstream>
 #include<cctype>
+#include "errors.h"
 
 //Function to check whether a string represents a number
 void is_numeric(std::string const& digit_string, int& exit_code);
@@ -17,7 +18,7 @@ void input_in_range(std::string const& digit_string, int& exit_code);
 void int_input_in_range(int digit, int& exit_code);
 
 //Boolean function checking whether a digit appears twice in an array
-bool is_repetitive(int count, int const configuration[26]);
+bool is_repetitive(int count, int const configuration[ALPHABET]);
 
 //Function printing an informative error message to the error stream
 void error_handling(std::string const& call_string, int exit_code);

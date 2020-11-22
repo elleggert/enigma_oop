@@ -23,7 +23,7 @@ Enigma::Enigma(int argc, char ** argv){
     error_handling("usage: ", exit_code);
   }
 
-  // For-loop parsing the input files, testing their inputs and calling the appropriate constructor
+  // For-loop parsing the input files and calling the appropriate constructor
   for (int i = 1 ; i < argc && !exit_code; i++){
     call_string = argv[i];
 
@@ -102,29 +102,17 @@ int Enigma::set_rotors(string const& call_string, int rotor_count){
       is_position >> pos_digit_string;
     count++;
   }
-
   if (!exit && count < rotor_count)
 	exit = NO_ROTOR_STARTING_POSITION;
 
-  //Setting the offset reference number to the starting position for all rotors in the list
+//Setting the reference number to the starting position for all rotors
   if (!exit){
     Rotor* here = leftmost_rotor;
     
     for (int rotor = 0 ; here ; rotor++){
       here->reference_no = pos_configuration[rotor]; 
       here = here->right;
-      }
-
-    /*
-    for (int rotor = 0 ; here ; rotor++){
-      for (int i = 0 ; i <= 25 ; i++){
-	if (here->rot_configuration[i] == pos_configuration[rotor]){
-	  here->reference_no = i;
-	  break;
-	}
-      }
-      here = here->right;
-    }*/
+    }
   }
   return exit;
 }
@@ -137,18 +125,18 @@ int Enigma::encryption(int digit){
     rightmost_rotor->rotate();
 
   digit = plugboard->encrypt(digit);
-
+  
   if (rightmost_rotor)
     digit = rightmost_rotor->encrypt_forward(digit);
-
+  
   digit = reflector->encrypt(digit);
-
+  
   if (leftmost_rotor)
     digit = leftmost_rotor->encrypt_backwards(digit);
-
+  
   digit = plugboard->encrypt(digit);
-
-  return static_cast<char>(digit) + 65;
+  
+  return static_cast<char>(digit) + ASCII_A;
 }
 /*END OF FUNCTION*/
 

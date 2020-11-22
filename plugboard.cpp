@@ -30,11 +30,11 @@ Plugboard::Plugboard(std::string const& call_string){
       is_plugboard >> pb_digit_string;
     
     count++;
-    if (count > 25 && !is_plugboard.eof())
+    if (!exit_code && count >= ALPHABET && !is_plugboard.eof())
 	exit_code = INCORRECT_NUMBER_OF_PLUGBOARD_PARAMETERS;
   }
   //SETTING A FLAG TO SIGNALISE END OF PLUGBOARD
-  if (!exit_code && count < 25)
+  if (!exit_code && count < ALPHABET)
     pb_configuration[count] = -1;
   if (!exit_code && count % 2 == 1)
     exit_code = INCORRECT_NUMBER_OF_PLUGBOARD_PARAMETERS;
@@ -46,7 +46,7 @@ Plugboard::Plugboard(std::string const& call_string){
 int Plugboard::encrypt(int digit){
   int blocker = 0, remainder, i = 1;
   //Calculating how many plugboard connections were specified
-  while (i >= 0){
+  while (i >= 0 && blocker < ALPHABET){
     i = this->pb_configuration[blocker];
     blocker++;
   }

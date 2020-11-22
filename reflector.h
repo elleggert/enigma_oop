@@ -6,9 +6,10 @@
 #include<stdlib.h>
 #include<cctype>
 #include "helper.h"
+#include "errors.h"
 
 class Reflector{
-  int rf_configuration[26];
+  int rf_configuration[ALPHABET];
   int exit_code = 0;
 
   /*Constructor for the reflector, called when enigma is created*/

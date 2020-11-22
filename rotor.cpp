@@ -15,7 +15,7 @@ Rotor::Rotor(string const& call_string){
 
   //FILLING THE ROTOR
   is_rotor >> rot_digit_string;
-  while (!exit_code  && count <= 25){
+  while (!exit_code  && count < ALPHABET){
 
     
     if (!exit_code)
@@ -51,11 +51,13 @@ Rotor::Rotor(string const& call_string){
 
 void Rotor::rotate(){
   int k = this->notches[0];
- 
-  this->reference_no = (this->reference_no + 1) % 26;
+
+  //Rotating a rotor
+  //If hitting a notch, recursively rotating the rotor to the left
+  this->reference_no = (this->reference_no + 1) % ALPHABET;
 
   for (int i = 1 ; k > 0 ; i++){
-    if (/*this->rot_configuration[*/this->reference_no == k){
+    if (this->reference_no == k){
       if (this->left) 
 	(this->left)->rotate();
     }
@@ -66,8 +68,7 @@ void Rotor::rotate(){
 /*END OF FUNCTION*/
 
 int Rotor::encrypt_forward(int digit){
-  //  digit = (digit + this->reference_no) % 26;
-  digit = (this->rot_configuration[(digit + reference_no) % 26] - this->reference_no + 26) % 26;
+  digit = (this->rot_configuration[(digit + reference_no) % ALPHABET] - this->reference_no + ALPHABET) % ALPHABET;
   if (this->left)
     digit = (this->left)->encrypt_forward(digit);
   return digit;
@@ -75,9 +76,9 @@ int Rotor::encrypt_forward(int digit){
 /*END OF FUNCTION*/
 
 int Rotor::encrypt_backwards(int digit){
-  for (int i = 0; i < 26 ; i++)
-    if (this->rot_configuration[i] == ((digit + this->reference_no) % 26)){
-      digit = (i - reference_no + 26) % 26;
+  for (int i = 0; i < ALPHABET ; i++)
+    if (this->rot_configuration[i] == (digit + this->reference_no) %  ALPHABET){
+      digit = (i - reference_no +  ALPHABET) %  ALPHABET;
       if (this->right)
 	digit = (this->right)->encrypt_backwards(digit);
       break;

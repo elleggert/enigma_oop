@@ -30,10 +30,10 @@ Reflector::Reflector(string const& call_string){
     if (!exit_code)
       is_reflector >> rf_digit_string;
     count++;
-    if (count > 25 && !is_reflector.eof())
+    if (!exit_code && count >= ALPHABET && !is_reflector.eof())
 	exit_code = INCORRECT_NUMBER_OF_REFLECTOR_PARAMETERS;
   }
-  if (!exit_code  && count < 26)
+  if (!exit_code  && count < ALPHABET)
     exit_code = INCORRECT_NUMBER_OF_REFLECTOR_PARAMETERS;
   is_reflector.close();
 }
@@ -41,7 +41,7 @@ Reflector::Reflector(string const& call_string){
 
 int Reflector::encrypt(int digit){
   int remainder;
-  for (int i = 0 ; i < 26 ; i++){
+  for (int i = 0 ; i < ALPHABET ; i++){
     if (this->rf_configuration[i] == digit){
       remainder = i % 2;
       if (!remainder)
@@ -50,6 +50,6 @@ int Reflector::encrypt(int digit){
 	return (this->rf_configuration[i-1]);
     }
   }
-  return digit; //Return statement will never be reached, since the clauses above are MECE. Included to suppress warning. 
+  return digit;//Not reachable since above is MECE. Included to suppress warning
 }
 /*End of Function*/

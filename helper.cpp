@@ -11,7 +11,7 @@ void is_numeric(string const& digit_string, int& exit_code){
 }
 /*END OF FUNCTION*/
 void int_input_in_range(int digit, int& exit_code){
-  if (digit > 25 || digit < 0){
+  if (digit >= ALPHABET || digit < 0){
    exit_code = INVALID_INPUT_CHARACTER;
    return;
   }
@@ -21,12 +21,12 @@ void int_input_in_range(int digit, int& exit_code){
 
 void input_in_range(string const& digit_string, int& exit_code){
   int digit = stoi(digit_string);
-  if (digit > 25 || digit < 0)
+  if (digit >= ALPHABET || digit < 0)
     exit_code = INVALID_INDEX;
 }
 /*END OF FUNCTION*/
 
-bool is_repetitive(int count, int const configuration[26]){
+bool is_repetitive(int count, int const configuration[ALPHABET]){
   for (int i = count-1 ; i >=0 ; i--){
       if (configuration[i] == configuration[count])
 	return false;

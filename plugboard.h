@@ -7,9 +7,10 @@
 #include<fstream>
 #include<cctype>
 #include "helper.h"
+#include "errors.h"
 
 class Plugboard{
-  int pb_configuration[26];
+  int pb_configuration[ALPHABET];
   int exit_code = 0;
 
   /*Constructor also checking the input validiry */

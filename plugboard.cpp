@@ -2,7 +2,7 @@
 #include "errors.h"
 
 using namespace std;
-  
+
 Plugboard::Plugboard(std::string const& call_string){
   int count = 0;
   string pb_digit_string;
@@ -12,10 +12,10 @@ Plugboard::Plugboard(std::string const& call_string){
   if (!is_plugboard){
     exit_code = ERROR_OPENING_CONFIGURATION_FILE;
   }
- 
+  
   is_plugboard >> pb_digit_string;
   while (!exit_code && !is_plugboard.eof()){
-
+    
     if (!exit_code)
       is_numeric(pb_digit_string, exit_code);
     if (!exit_code)
@@ -31,7 +31,7 @@ Plugboard::Plugboard(std::string const& call_string){
     
     count++;
     if (!exit_code && count >= ALPHABET && !is_plugboard.eof())
-	exit_code = INCORRECT_NUMBER_OF_PLUGBOARD_PARAMETERS;
+      exit_code = INCORRECT_NUMBER_OF_PLUGBOARD_PARAMETERS;
   }
   //SETTING A FLAG TO SIGNALISE END OF PLUGBOARD
   if (!exit_code && count < ALPHABET)
@@ -50,7 +50,7 @@ int Plugboard::encrypt(int digit){
     i = this->pb_configuration[blocker];
     blocker++;
   }
-
+  
   for (int j = 0 ; j < blocker; j++){
     if (this->pb_configuration[j] == digit){
       remainder = j % 2;

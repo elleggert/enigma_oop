@@ -12,16 +12,15 @@
 //Plugboard class encrypting letters according to pre-specified connections 
 class Plugboard{
   int pb_configuration[ALPHABET];
-  int exit_code = 0;
-
+  int exit_code = NO_ERROR;
+  
   /*Constructor also checking the input validiry */
   Plugboard(std::string const& call_string);
-
+  
   /*Encryption function*/
   int encrypt(int digit);
   
   friend class Enigma;
 };
-
 
 #endif

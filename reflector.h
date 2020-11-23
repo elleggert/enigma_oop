@@ -12,14 +12,13 @@
 //Invoked after the digit has passed rotors for the first time
 class Reflector{
   int rf_configuration[ALPHABET];
-  int exit_code = 0;
-
+  int exit_code = NO_ERROR;
+  
   /*Constructor for the reflector, called when enigma is created*/
   Reflector(std::string const& call_string);
   
   int encrypt(int digit);
   friend class Enigma;
 };
-
 
 #endif

@@ -10,12 +10,13 @@ void is_numeric(string const& digit_string, int& exit_code){
   }
 }
 /*END OF FUNCTION*/
+
 void int_input_in_range(int digit, int& exit_code){
   if (digit >= ALPHABET || digit < 0){
-   exit_code = INVALID_INPUT_CHARACTER;
-   return;
+    exit_code = INVALID_INPUT_CHARACTER;
+    return;
   }
- return;
+  return;
 }
 /*END OF FUNCTION*/
 
@@ -28,8 +29,8 @@ void input_in_range(string const& digit_string, int& exit_code){
 
 bool is_repetitive(int count, int const configuration[ALPHABET]){
   for (int i = count-1 ; i >=0 ; i--){
-      if (configuration[i] == configuration[count])
-	return false;
+    if (configuration[i] == configuration[count])
+      return false;
   }
   return true;
 }
@@ -55,9 +56,9 @@ void error_handling(string const& call_string, int exit_code){
     cerr << "Non-numeric character in configuration file: " //
 	 << call_string << endl;
     break;
-    case 5:
-      cerr << "The plugboard configuration file " //
-	   << call_string << " has an invalid input configuration!" << endl;
+  case 5:
+    cerr << "The plugboard configuration file " //
+	 << call_string << " has an invalid input configuration!" << endl;
     break;
   case 6:
     cerr << "Incorrect number of parameters in plugboard file "//
@@ -65,7 +66,9 @@ void error_handling(string const& call_string, int exit_code){
     break;
   case 7:
     cerr << "The rotor file " << call_string <<//
-      " specified an invalid mapping" << endl;
+      " specified an invalid mapping " <<//
+      "(i.e. duplicate mapping of a digit or less than 26 parameters specified)"
+	 << endl;
     break;
   case 8:
     cerr << "The rotor file " << call_string <<//
@@ -77,7 +80,9 @@ void error_handling(string const& call_string, int exit_code){
     break;
   case 10:
     cerr << "Incorrect number of parameters in reflector file " //
-	 << call_string << endl;
+	 << call_string <<//
+      "(i.e. odd, insufficient or redundant number of parameters). "<<//
+      "Reflector config files must specify exactly 26 parameters."<< endl;
     break;
   case 11:
     cerr << "The configuration file " << call_string <<//

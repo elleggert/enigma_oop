@@ -18,22 +18,23 @@ class Rotor{
   int reference_no = 0;
   Rotor * left = nullptr;
   Rotor * right = nullptr;
-  int exit_code = 0;
-
+  int exit_code = NO_ERROR;
+  
   // Rotor constructor: checks inputs and fills rotor configuration and notches 
   Rotor(std::string const& call_string);
-
-  //Recursive: The rotate function rotates the rotor it is called on.
-  //If a notch is on top, it recursively rotates the rotor to the left as well. 
+  
+  //The rotate function rotates the rotor it is called on.
+  //If a notch is on top, it recursively rotates the rotor to the left. 
   void rotate();
-
-  //Recursive: This function encrypts a digit on the rightmost rotor
-  //recursively calls itself as long as more rotors exist to the left. 
+  
+  //This function encrypts a digit on the rightmost rotor
+  //Eecursively calls itself as long as more rotors exist to the left. 
   int encrypt_forward(int digit);
-
-   //Recursive: Function encrypts a digit on the leftmost rotor after reflector
+  
+  //Function encrypts a digit on the leftmost rotor after reflector
   //Recursively calls itself as long as more rotors exist to the right. 
   int encrypt_backwards(int digit);
+
   friend class Enigma;
 };
 

@@ -19,22 +19,22 @@ class Enigma{
   Rotor * leftmost_rotor;
   Rotor * rightmost_rotor;
   int rotor_count = 0;
-
-/*Checking validity of the rotor starting positions and assigns them to rotors*/
+  
+  /*Checking validity of rotor starting positions and assigns them to rotors*/
   int set_rotors(std::string const& call_string, int rotor_count);
-
+  
  public:
-  int exit_code = 0;
-
-/*Constructor of an enigma machine. Also checks all command line inputs */
+  int exit_code = NO_ERROR;
+  
+  /*Constructor of an enigma machine. Also checks all command line inputs */
   Enigma(int argc, char ** argv);
-
+  
   /*Destructor of every element of enigma*/
   ~Enigma();
-
-/*function deleting all nodes in rotor linkedlist, called by enigma destructor*/
+  
+  /*Deleting all nodes in rotor linkedlist, called by enigma destructor*/
   void clear_rotor();
-
+  
   /*Function handling the encryption process*/
   int encryption(int letter);
 };

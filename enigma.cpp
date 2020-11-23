@@ -14,37 +14,37 @@ Enigma::Enigma(int argc, char ** argv){
   reflector = nullptr;
   leftmost_rotor = nullptr;
   rightmost_rotor = nullptr;
-
+  
   string call_string;
   Rotor* temp;
-
+  
   if (argc < 4){
     exit_code = INSUFFICIENT_NUMBER_OF_PARAMETERS;
     error_handling("usage: ", exit_code);
   }
-
+  
   // For-loop parsing the input files and calling the appropriate constructor
   for (int i = 1 ; i < argc && !exit_code; i++){
     call_string = argv[i];
-
+    
     //Plugboard
     auto found = call_string.find(".pb");
     if (found != string::npos){
       plugboard = new Plugboard(call_string);
       exit_code = plugboard->exit_code;
     }
-
+    
     //Reflector
     found = call_string.find(".rf");
     if (found != string::npos){
       reflector = new Reflector(call_string);
       exit_code = reflector->exit_code;
     }
-
+    
     //Rotor Linked List
     found = call_string.find(".rot");
     if (found != string::npos){
-
+      
       //This code appends an existing Linked List of Rotors
       if (rotor_count){
 	rightmost_rotor = new Rotor(call_string);
@@ -53,7 +53,7 @@ Enigma::Enigma(int argc, char ** argv){
 	rightmost_rotor->left = temp;
 	temp = rightmost_rotor;
 	rotor_count++;
-    }
+      }
       //This code creates a new Rotor Linked List
       if (!rotor_count){
 	leftmost_rotor = new Rotor(call_string);
@@ -63,7 +63,7 @@ Enigma::Enigma(int argc, char ** argv){
 	rotor_count++;
       }
     }
-
+    
     //Rotor Positions
     found = call_string.find(".pos");
     if (found != string::npos){
@@ -79,7 +79,7 @@ Enigma::Enigma(int argc, char ** argv){
 /*END OF FUNCTION*/
 
 int Enigma::set_rotors(string const& call_string, int rotor_count){
-  int count = 0, exit = 0;
+  int count = 0, exit = NO_ERROR;
   string pos_digit_string;
   ifstream is_position;
   int pos_configuration[rotor_count];
@@ -103,9 +103,9 @@ int Enigma::set_rotors(string const& call_string, int rotor_count){
     count++;
   }
   if (!exit && count < rotor_count)
-	exit = NO_ROTOR_STARTING_POSITION;
-
-//Setting the reference number to starting position for all rotors
+    exit = NO_ROTOR_STARTING_POSITION;
+  
+  //Setting the reference number to starting position for all rotors
   if (!exit){
     Rotor* here = leftmost_rotor;
     
@@ -120,10 +120,10 @@ int Enigma::set_rotors(string const& call_string, int rotor_count){
 /*END OF FUNCTION*/
 
 int Enigma::encryption(int digit){
-
+  
   if (rightmost_rotor)
     rightmost_rotor->rotate();
-
+  
   digit = plugboard->encrypt(digit);
   
   if (rightmost_rotor)
@@ -157,4 +157,4 @@ Enigma::~Enigma(){
   clear_rotor();
 }
 /*END OF FUNCTION*/
-  
+

@@ -44,14 +44,14 @@ Plugboard::Plugboard(std::string const& call_string){
 /*End of Function*/
 
 int Plugboard::encrypt(int digit){
-  int blocker = 0, remainder, i = 1;
+  int blocker = 0, remainder, i = 0;
   //Calculating how many plugboard connections were specified
   while (i >= 0 && blocker < ALPHABET){
     i = this->pb_configuration[blocker];
     blocker++;
   }
 
-  for (int j = 0 ; j < blocker - 1 ; j++){
+  for (int j = 0 ; j < blocker; j++){
     if (this->pb_configuration[j] == digit){
       remainder = j % 2;
       if (!remainder)

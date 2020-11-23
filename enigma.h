@@ -9,7 +9,10 @@
 #include "reflector.h"
 #include "rotor.h"
 #include "helper.h"
-  
+#include "errors.h"
+
+//Class combining all elements and behaviour of enigma machine
+// Consists of rotor linked list, plugboard and reflector
 class Enigma{
   Plugboard * plugboard;
   Reflector * reflector;
@@ -18,7 +21,7 @@ class Enigma{
   int rotor_count = 0;
 
 /*Checking validity of the rotor starting positions and assigns them to rotors*/
-  int set_rotors(std::string const& call_string, int rotor_count);  
+  int set_rotors(std::string const& call_string, int rotor_count);
 
  public:
   int exit_code = 0;

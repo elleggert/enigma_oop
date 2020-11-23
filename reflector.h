@@ -8,6 +8,8 @@
 #include "helper.h"
 #include "errors.h"
 
+//Reflector class mirroring all digits to a different connection.
+//Invoked after the digit has passed rotors for the first time
 class Reflector{
   int rf_configuration[ALPHABET];
   int exit_code = 0;

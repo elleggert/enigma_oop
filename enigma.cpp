@@ -84,12 +84,12 @@ int Enigma::set_rotors(string const& call_string, int rotor_count){
   ifstream is_position;
   int pos_configuration[rotor_count];
   
-  //Opening the file
+  //Opening file
   is_position.open(call_string, ios::in);
   if (!is_position){
     exit = ERROR_OPENING_CONFIGURATION_FILE;
   }
-  //Inserting and the next digit from the file
+  //Inserting next digit from the file
   is_position >> pos_digit_string;
   while (!exit  && !is_position.eof()){
     
@@ -105,7 +105,7 @@ int Enigma::set_rotors(string const& call_string, int rotor_count){
   if (!exit && count < rotor_count)
 	exit = NO_ROTOR_STARTING_POSITION;
 
-//Setting the reference number to the starting position for all rotors
+//Setting the reference number to starting position for all rotors
   if (!exit){
     Rotor* here = leftmost_rotor;
     

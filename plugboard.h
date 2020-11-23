@@ -9,6 +9,7 @@
 #include "helper.h"
 #include "errors.h"
 
+//Plugboard class encrypting letters according to pre-specified connections 
 class Plugboard{
   int pb_configuration[ALPHABET];
   int exit_code = 0;

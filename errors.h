@@ -2,8 +2,8 @@
 #define ERRORS_H
 
 /* constants */
-#define ALPHABET 26
-#define ASCII_A 65
+#define ALPHABET                                  26
+#define ASCII_A                                   65
 
 
 /* error codes  */

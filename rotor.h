@@ -9,6 +9,9 @@
 #include "helper.h"
 #include "errors.h"
 
+//Rotor class encrypting all letters after the plugboard
+//Inverted encryption after the reflector
+//Rotates at predefined notches
 class Rotor{
   int rot_configuration[ALPHABET];
   int notches[5];

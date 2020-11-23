@@ -38,40 +38,53 @@ bool is_repetitive(int count, int const configuration[ALPHABET]){
 void error_handling(string const& call_string, int exit_code){
   switch (exit_code){
   case 1:
-    cerr << call_string << "enigma plugboard-file reflector-file (<rotor-file>)* rotor-positions"<< endl;
+    cerr << call_string <<//
+      "enigma plugboard-file reflector-file (<rotor-file>)* rotor-positions"//
+	 << endl;
     break;
   case 2:
-    cerr << call_string << " is not a valid input character (input characters must be upper case letters A-Z)!" << endl;
+    cerr << call_string <<//
+      " is not a valid input character "<<//
+      "(input characters must be upper case letters A-Z)!" << endl;
     break;
   case 3:
-    cerr << "Sorry, the file " << call_string << " contained a digit that exceeds the alphabetical range 0-26!" << endl;
+    cerr << "Sorry, the file " << call_string << //
+      " contained a digit that exceeds the alphabetical range 0-26!" << endl;
     break;
   case 4:
-    cerr << "Non-numeric character in configuration file: " << call_string << endl;
+    cerr << "Non-numeric character in configuration file: " //
+	 << call_string << endl;
     break;
     case 5:
-    cerr << "The plugboard configuration file " << call_string << " has an invalid input configuration!" << endl;
+      cerr << "The plugboard configuration file " //
+	   << call_string << " has an invalid input configuration!" << endl;
     break;
   case 6:
-    cerr << "Incorrect number of parameters in plugboard file " << call_string << endl;
+    cerr << "Incorrect number of parameters in plugboard file "//
+	 << call_string << endl;
     break;
   case 7:
-    cerr << "The rotor file " << call_string << " specified an invalid mapping" << endl;
+    cerr << "The rotor file " << call_string <<//
+      " specified an invalid mapping" << endl;
     break;
   case 8:
-    cerr << "The rotor file " << call_string << " did not specify a starting positions for all rotors" << endl;
+    cerr << "The rotor file " << call_string <<//
+      " did not specify a starting positions for all rotors" << endl;
     break;
   case 9:
-    cerr << "The reflector configuration file " << call_string <<  " has an invalid input configuration" <<  endl;
+    cerr << "The reflector configuration file " << call_string << //
+      " has an invalid input configuration" <<  endl;
     break;
   case 10:
-    cerr << "Incorrect number of parameters in reflector file " << call_string << endl; 
+    cerr << "Incorrect number of parameters in reflector file " //
+	 << call_string << endl;
     break;
   case 11:
-    cerr << "The configuration file " << call_string << " could not be opened!" << endl;
+    cerr << "The configuration file " << call_string <<//
+      " could not be opened!" << endl;
     break;
   default:
     break;
   }
-} 
+}
 /*END OF FUNCTION*/
